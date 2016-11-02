@@ -4,11 +4,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
- 
+
 import java.util.Arrays;
 import java.util.List;
- 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -32,6 +34,9 @@ public class TarefaResponsabilizadorTest {
     responsabilizador.atribuirResponsabilidadeTarefas(sprint, usuarioResponsavel);
  
     assertThat(listaTarefas, everyItem(hasProperty("responsavel", equalTo(usuarioResponsavel))));
+    verify(tarefasService, times(1)).salvar(listaTarefas);
   }
+  
+  
  
 }
